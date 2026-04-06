@@ -1,5 +1,7 @@
 package org.example.models;
 
+import org.example.enums.Status;
+
 import java.time.LocalDateTime;
 
 public class HistoricoStatus {

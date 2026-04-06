@@ -1,5 +1,8 @@
 package org.example;
 
+import org.example.enums.Categoria;
+import org.example.enums.Prioridade;
+import org.example.enums.Status;
 import org.example.models.*;
 import org.example.services.ServicoSolicitacoes;
 
@@ -107,20 +110,20 @@ public class Main {
 
                     // CRIAR
                     Solicitacao s = new Solicitacao(categoria, descricao, local, prioridade, anonimo);
-                    servico.criar(s);
+                    servico.criarSolicitacao(s);
 
                     System.out.println("\n✅ Solicitação criada com protocolo: " + s.getProtocolo());
                     break;
 
                 case 2:
-                    servico.listar();
+                    servico.listarProtocolo();
                     break;
 
                 case 3:
                     System.out.println("Digite o protocolo:");
                     int p = sc.nextInt();
 
-                    Solicitacao buscada = servico.buscar(p);
+                    Solicitacao buscada = servico.buscarProtocolo(p);
 
                     if (buscada != null) {
                         buscada.exibirDetalhes();
@@ -134,7 +137,7 @@ public class Main {
                     int id = sc.nextInt();
                     sc.nextLine();
 
-                    Solicitacao sol = servico.buscar(id);
+                    Solicitacao sol = servico.buscarProtocolo(id);
 
                     if (sol != null) {
 

@@ -1,5 +1,9 @@
 package org.example.models;
 
+import org.example.enums.Categoria;
+import org.example.enums.Prioridade;
+import org.example.enums.Status;
+
 import java.util.ArrayList;
 import java.util.List;
 
