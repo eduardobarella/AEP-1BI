@@ -17,9 +17,12 @@ public class Solicitacao {
     private Prioridade prioridade;
     private Status status;
     private boolean anonimo;
+    private String nomeSolicitante;
     private List<HistoricoStatus> historico;
 
-    public Solicitacao(Categoria categoria, String descricao, String localizacao, Prioridade prioridade, boolean anonimo) {
+    public Solicitacao(Categoria categoria, String descricao, String localizacao,
+                       Prioridade prioridade, boolean anonimo, String nomeSolicitante) {
+
         this.protocolo = contador++;
         this.categoria = categoria;
         this.descricao = descricao;
@@ -27,8 +30,15 @@ public class Solicitacao {
         this.prioridade = prioridade;
         this.status = Status.ABERTO;
         this.anonimo = anonimo;
-        this.historico = new ArrayList<>();
 
+        //REGRA DO ANONIMATO
+        if (anonimo) {
+            this.nomeSolicitante = "Anônimo";
+        } else {
+            this.nomeSolicitante = nomeSolicitante;
+        }
+
+        this.historico = new ArrayList<>();
         adicionarHistorico(Status.ABERTO, "Solicitação criada");
     }
 
@@ -55,12 +65,12 @@ public class Solicitacao {
 
     public void exibirDetalhes() {
         System.out.println("Protocolo: " + protocolo);
+        System.out.println("Solicitante: " + nomeSolicitante);
         System.out.println("Categoria: " + categoria);
         System.out.println("Descrição: " + descricao);
         System.out.println("Localização: " + localizacao);
         System.out.println("Prioridade: " + prioridade);
         System.out.println("Status: " + status);
-        System.out.println("Anônimo: " + (anonimo ? "Sim" : "Não"));
 
         System.out.println("Histórico:");
         for (HistoricoStatus h : historico) {
