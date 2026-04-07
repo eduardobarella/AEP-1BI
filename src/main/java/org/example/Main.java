@@ -5,7 +5,8 @@ import org.example.services.ServicoSolicitacoes;
 
 import java.util.Scanner;
 
-public class Main {
+public class 1
+Main {
     public static void main(String[] args) {
 
         Scanner sc = new Scanner(System.in);
@@ -67,6 +68,11 @@ public class Main {
                     System.out.println("Localização:");
                     String local = sc.nextLine();
 
+                    if (local.isEmpty()) {
+                        System.out.println("Localização obrigatória!");
+                        continue;
+                    }
+
                     // PRIORIDADE
                     System.out.println("\nEscolha a prioridade:");
                     System.out.println("1 - Alta");
@@ -105,8 +111,29 @@ public class Main {
                             continue;
                     }
 
+                    // NOME (se não for anônimo)
+                    String nome = "";
+
+                    if (!anonimo) {
+                        System.out.println("Digite seu nome:");
+                        nome = sc.nextLine();
+
+                        if (nome.isEmpty()) {
+                            System.out.println("Nome obrigatório!");
+                            continue;
+                        }
+                    }
+
                     // CRIAR
-                    Solicitacao s = new Solicitacao(categoria, descricao, local, prioridade, anonimo);
+                    Solicitacao s = new Solicitacao(
+                            categoria,
+                            descricao,
+                            local,
+                            prioridade,
+                            anonimo,
+                            nome
+                    );
+
                     servico.criar(s);
 
                     System.out.println("\n✅ Solicitação criada com protocolo: " + s.getProtocolo());
